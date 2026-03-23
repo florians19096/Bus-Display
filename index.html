@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="de"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Behrmannplatz Buszeiten&lt;/title&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">body {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>background: #000;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color: #FFD700;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-family: Arial, sans-serif;</p>
+<p class="p1">}</p>
+<p class="p1">.header {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 22px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>border-bottom: 1px solid rgba(255,255,255,0.2);</p>
+<p class="p1">}</p>
+<p class="p1">.card {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding: 20px;</p>
+<p class="p1">}</p>
+<p class="p1">.row {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding: 14px 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>border-bottom: 1px solid rgba(255,255,255,0.1);</p>
+<p class="p1">}</p>
+<p class="p1">.line {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 22px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>width: 60px;</p>
+<p class="p1">}</p>
+<p class="p1">.direction {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 18px;</p>
+<p class="p1">}</p>
+<p class="p1">.time {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 22px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>text-align: right;</p>
+<p class="p1">}</p>
+<p class="p1">.delay {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 6px;</p>
+<p class="p1">}</p>
+<p class="p1">.late {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color: red;</p>
+<p class="p1">}</p>
+<p class="p1">.medium {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color: orange;</p>
+<p class="p1">}</p>
+<p class="p1">.footer {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0.5;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding: 10px;</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="header"&gt;Behrmannplatz&lt;/div&gt;</p>
+<p class="p1">&lt;div class="card" id="list"&gt;lade Daten...&lt;/div&gt;</p>
+<p class="p1">&lt;div class="footer" id="status"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const STOP_NAME = "Behrmannplatz, Hamburg";</p>
+<p class="p2"><br></p>
+<p class="p1">async function load() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 1️⃣ Stop-ID holen</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const res = await fetch(`https://v6.db.transport.rest/stops?query=${encodeURIComponent(STOP_NAME)}`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const stops = await res.json();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!stops[0]) { throw new Error("Stop nicht gefunden"); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const stopId = stops[0].id;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 2️⃣ Abfahrten holen</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const depRes = await fetch(`https://v6.db.transport.rest/stops/${stopId}/departures?duration=60`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const data = await depRes.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const container = document.getElementById("list");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>container.innerHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const now = new Date();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 3️⃣ Nur Busse anzeigen, max. 10 Einträge</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data.departures</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.filter(d =&gt; d.line.product === "bus")</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.slice(0, 10)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.forEach(dep =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const line = dep.line.name;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const direction = dep.direction;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const planned = new Date(dep.plannedWhen);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const real = new Date(dep.when);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const delay = Math.round((real - planned) / 60000);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const mins = Math.max(0, Math.round((real - now) / 60000));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>let delayHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let delayClass = "";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (delay &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>delayClass = delay &gt; 4 ? "late" : "medium";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>delayHTML = `&lt;span class="delay ${delayClass}"&gt;(+${delay})&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const timeText = mins &lt;= 0 ? "sofort" : mins + " min";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>container.innerHTML += `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="line"&gt;${line}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="direction"&gt;${direction}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="time"&gt;${timeText} ${delayHTML}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById("status").innerText =</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"Letztes Update: " + new Date().toLocaleTimeString();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById("list").innerText = "Fehler beim Laden";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById("status").innerText = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>console.error(e);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Erst laden + alle 30 Sekunden aktualisieren</p>
+<p class="p1">load();</p>
+<p class="p1">setInterval(load, 30000);</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
