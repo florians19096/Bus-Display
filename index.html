@@ -25,26 +25,22 @@ body { margin:0; background:#000; color:#FFD700; font-family:Arial,sans-serif; }
 <div class="footer" id="status"></div>
 
 <script>
-const STOP_NAME = "Behrmannplatz, Hamburg";
-// CORS-Proxy, um GitHub Pages Probleme zu umgehen
+// Feste Stop-ID für Behrmannplatz
+const STOP_ID = "900000100201";
+// Stabile Proxy-URL
 const PROXY = "https://cors.bridged.cc/";
 
 async function load() {
     try {
-        // 1️⃣ Stop-ID abrufen
-        const stopRes = await fetch(`${PROXY}${encodeURIComponent(`https://v6.db.transport.rest/stops?query=${STOP_NAME}`)}`);
-        const stops = await stopRes.json();
-        if (!stops[0]) throw new Error("Stop nicht gefunden");
-        const stopId = stops[0].id;
-
-        // 2️⃣ Abfahrten abrufen
-        const depRes = await fetch(`${PROXY}${encodeURIComponent(`https://v6.db.transport.rest/stops/${stopId}/departures?duration=60`)}`);
+        // Abfahrten abrufen
+        const depRes = await fetch(`${PROXY}https://v6.db.transport.rest/stops/${STOP_ID}/departures?duration=60`);
         const data = await depRes.json();
 
         const container = document.getElementById("list");
         container.innerHTML = "";
         const now = new Date();
 
+        // Nur Busse, max. 10 Einträge
         data.departures
             .filter(d => d.line.product === "bus")
             .slice(0, 10)
@@ -83,7 +79,7 @@ async function load() {
     }
 }
 
-// Laden beim Start + alle 30 Sekunden aktualisieren
+// Erst laden + alle 30 Sekunden aktualisieren
 load();
 setInterval(load, 30000);
 </script>
