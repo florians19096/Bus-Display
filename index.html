@@ -3,48 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bus Behrmannplatz Test</title>
+<title>Behrmannplatz Buszeiten</title>
 <style>
-body {
-    margin:0;
-    background:#000;
-    color:#FFD700;
-    font-family:Arial,sans-serif;
-}
-.header {padding:20px; font-size:22px; font-weight:bold; text-align:center; border-bottom:1px solid rgba(255,255,255,0.2);}
-.card {padding:20px;}
-.row {display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1);}
-.line {font-size:22px; font-weight:bold; width:60px;}
-.direction {flex:1; font-size:18px;}
-.time {font-size:22px; text-align:right;}
-.delay {font-size:14px; margin-left:6px;}
-.late {color:red;}
-.medium {color:orange;}
-.footer {text-align:center; font-size:12px; opacity:0.5; padding:10px;}
+body { margin:0; background:#000; color:#FFD700; font-family:Arial,sans-serif; }
+.header { padding:20px; font-size:22px; font-weight:bold; text-align:center; border-bottom:1px solid rgba(255,255,255,0.2); }
+.card { padding:20px; }
+.row { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1); }
+.line { font-size:22px; font-weight:bold; width:60px; }
+.direction { flex:1; font-size:18px; }
+.time { font-size:22px; text-align:right; }
+.delay { font-size:14px; margin-left:6px; }
+.late { color:red; }
+.medium { color:orange; }
+.footer { text-align:center; font-size:12px; opacity:0.5; padding:10px; }
 </style>
 </head>
 <body>
 
 <div class="header">Behrmannplatz</div>
-<div class="card" id="list">lade Daten...</div>
+<div class="card" id="list">lade Daten…</div>
 <div class="footer" id="status"></div>
 
 <script>
-// Stopname
 const STOP_NAME = "Behrmannplatz, Hamburg";
-
-// CORS-freundlicher Test-Proxy
+// CORS-Proxy, um GitHub Pages Probleme zu umgehen
 const PROXY = "https://api.allorigins.win/raw?url=";
 
 async function load() {
     try {
-        // Stop-ID holen
+        // 1️⃣ Stop-ID abrufen
         const stopRes = await fetch(`${PROXY}${encodeURIComponent(`https://v6.db.transport.rest/stops?query=${STOP_NAME}`)}`);
         const stops = await stopRes.json();
         if (!stops[0]) throw new Error("Stop nicht gefunden");
         const stopId = stops[0].id;
 
-        // Abfahrten holen
+        // 2️⃣ Abfahrten abrufen
         const depRes = await fetch(`${PROXY}${encodeURIComponent(`https://v6.db.transport.rest/stops/${stopId}/departures?duration=60`)}`);
         const data = await depRes.json();
 
@@ -54,7 +47,7 @@ async function load() {
 
         data.departures
             .filter(d => d.line.product === "bus")
-            .slice(0,10)
+            .slice(0, 10)
             .forEach(dep => {
                 const line = dep.line.name;
                 const direction = dep.direction;
@@ -66,8 +59,11 @@ async function load() {
 
                 let delayHTML = "";
                 let delayClass = "";
-                if(delay>0){delayClass = delay>4?"late":"medium"; delayHTML=`<span class="delay ${delayClass}">(+${delay})</span>`;}
-                const timeText = mins<=0?"sofort":mins+" min";
+                if (delay > 0) {
+                    delayClass = delay > 4 ? "late" : "medium";
+                    delayHTML = `<span class="delay ${delayClass}">(+${delay})</span>`;
+                }
+                const timeText = mins <= 0 ? "sofort" : mins + " min";
 
                 container.innerHTML += `
                     <div class="row">
@@ -80,15 +76,16 @@ async function load() {
 
         document.getElementById("status").innerText = "Letztes Update: " + new Date().toLocaleTimeString();
 
-    } catch(e){
+    } catch(e) {
         document.getElementById("list").innerText = "Fehler beim Laden";
         document.getElementById("status").innerText = "";
         console.error(e);
     }
 }
 
+// Laden beim Start + alle 30 Sekunden aktualisieren
 load();
-setInterval(load,30000);
+setInterval(load, 30000);
 </script>
 </body>
 </html>
