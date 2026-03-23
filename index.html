@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="de"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;title&gt;Behrmannplatz Abfahrten&lt;/title&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">body {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>background: #000;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color: #FFD700;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-family: Arial, Helvetica, sans-serif;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.container {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding: 30px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">h1 {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 36px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 20px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">table {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>border-collapse: collapse;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">th {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0.7;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">td {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding: 12px 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>border-bottom: 1px solid rgba(255,255,255,0.1);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.line {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 34px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.time {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>text-align: right;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.delay {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 10px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.late {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color: #ff4d4d;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.medium {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color: orange;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.footer {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>left: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0.5;</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Behrmannplatz&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;table id="departures"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;Linie&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;Richtung&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="time"&gt;Abfahrt&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/table&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lädt Daten...</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const STOP_NAME = "Hamburg Behrmannplatz";</p>
+<p class="p2"><br></p>
+<p class="p1">async function loadData() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const res = await fetch(`https://v6.db.transport.rest/stops?query=${STOP_NAME}`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const stops = await res.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const stopId = stops[0].id;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const depRes = await fetch(`https://v6.db.transport.rest/stops/${stopId}/departures?duration=60`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const data = await depRes.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const table = document.getElementById("departures");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>table.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Linie&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Richtung&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;th class="time"&gt;Abfahrt&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>data.departures.slice(0, 8).forEach(dep =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const line = dep.line.name;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const direction = dep.direction;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const planned = new Date(dep.plannedWhen);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const real = new Date(dep.when);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const diffMin = Math.round((real - planned) / 60000);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const now = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mins = Math.max(0, Math.round((real - now) / 60000));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let delayHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let delayClass = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (diffMin &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>delayClass = diffMin &gt; 4 ? "late" : "medium";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>delayHTML = `&lt;span class="delay ${delayClass}"&gt;(+${diffMin})&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const timeText = mins &lt;= 0 ? "sofort" : `${mins} min`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>table.innerHTML += `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="line"&gt;${line}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td&gt;${direction}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="time"&gt;${timeText} ${delayHTML}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelector(".footer").innerText = "Letztes Update: " + new Date().toLocaleTimeString();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch (err) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelector(".footer").innerText = "Fehler beim Laden...";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>console.error(err);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">loadData();</p>
+<p class="p1">setInterval(loadData, 30000);</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
